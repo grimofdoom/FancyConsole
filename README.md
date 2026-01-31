@@ -3,6 +3,10 @@ Welcome to the FancyConsole project. This was originally designed as a set of he
 To my point of view, this project encapsulated what personally feels like a more modern way of interact with the console itself, while still being easy to use and understand. I have so far implimented 2 core systems.
 In the future, I will be adding more helper methods/classes to help with text based console interaction and control - obfuscating the more complex parts of console interaction, with literal one-liners.
 
+### Disclaimer
+ChatGPT was used to help in my work. I am far from a professional. Sections where code was generated instead of written are noted properly to state they were. Primarily, color math and enabling ANSI in windows.
+___
+
 ## Print
 
 Print is primarily focused with either putting text to the console, or interacting with the text on the screen. FancyConsole is focused primarily on text based interaction instead of gui based (such as NCurses).
@@ -13,6 +17,8 @@ extra color manipulations and color themeing to be done easier. Ansi TrueColor i
 ### Theme
 A theme is font/background color, ANSI effects, and some helper methods to make it easier to apply themes to text output. This lets you more easily create consistancy AND swap all your colors in one spot. 
 Print automatically uses a DefaultTheme for all core output, when not being overridden in method. You can change this at any time for your own, so you do not have to pass theme info every time.
+
+---
 
 ## Read
 
