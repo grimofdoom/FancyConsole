@@ -18,6 +18,11 @@ extra color manipulations and color themeing to be done easier. Ansi TrueColor i
 A theme is font/background color, ANSI effects, and some helper methods to make it easier to apply themes to text output. This lets you more easily create consistancy AND swap all your colors in one spot. 
 Print automatically uses a DefaultTheme for all core output, when not being overridden in method. You can change this at any time for your own, so you do not have to pass theme info every time.
 
+
+### Log
+Likely will be pushed to its own namespace if more features added. Warnings are light issues, errors are more serious. Both can be turned on/off separately to actually print to console. Both have default themes
+that can be overriden. Calling LogsToFile() will generate the outcome file of logged warnings/errors (if also enabled to store log).
+
 ---
 
 ## Read
