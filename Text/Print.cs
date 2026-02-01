@@ -19,6 +19,12 @@ namespace FancyConsole.Text {
             SetTheme(NormalTheme);
         }
 
+        //This is a lazy class to reduce some annoyances of repeated .ToString() in GUI.Typewriter
+        /// <summary>Write a single character to screen, without starting a new line</summary>
+        public static void Write(char character) {
+            Write(character.ToString());
+        }
+
 
 
         /// <summary>Print out zero-markup text with new line, with specific color theme</summary>
@@ -76,26 +82,6 @@ namespace FancyConsole.Text {
                 Console.ReadKey(true);
             Line(message);
             Console.ReadLine();
-        }
-
-        /// <summary>Print out text as if it was being written</summary>
-        /// <param name="text">Entire body of text to print out</param>
-        /// <param name="delay">milliseconds of delay between each letter</param>
-        public static void WriteOut(string text, int delay) {
-            foreach(char letter in text) {
-                Write(letter.ToString());
-                Thread.Sleep(delay);
-                //TODO: Update to support hitting ENTER to instantly write out rest of text
-            }
-            Write("\n");
-        }
-
-        /// <summary>Write out a chunk of text over a specific length of time</summary>
-        /// <param name="text">Entire body of text to print out</param>
-        /// <param name="seconds">How many seconds overall to print body of text</param>
-        public static void WriteOverTime(string text, float seconds) {
-            float ms = (seconds / text.Length) * 1000;
-            WriteOut(text, (int)ms);
         }
 
         /// <summary>Reset active line instead of clearing whole console</summary>
