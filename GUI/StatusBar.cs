@@ -1,6 +1,6 @@
 ﻿using System.Diagnostics;
 
-namespace FancyConsole.Text {
+namespace FancyConsole.GUI {
     public static class Bar {
         /// <summary>Generate a status bar with lengTotal with length being filled</summary>
         public static string Basic(int length, int lengthTotal) {

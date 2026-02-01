@@ -11,8 +11,4 @@
     <None Include="Text\Text.shproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Log\" />
-  </ItemGroup>
-
 </Project>
