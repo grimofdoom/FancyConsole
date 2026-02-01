@@ -41,7 +41,7 @@ namespace FancyConsole.GUI {
             //Used to skip a lot of unecessary repeating of skip section
             bool skipStarted = false;
             
-            foreach (string part in TextToWordArray(text)) {
+            foreach (string part in GUI.Position.TextToWordArray(text)) {
                 Print.Write(part);
                 Thread.Sleep(msPause);
 
@@ -58,21 +58,8 @@ namespace FancyConsole.GUI {
 
         /// <summary>Print out text word/symbol at a time, over span of TotalTime in milliseconds</summary>
         public static void ByWordOverTime(string text, int msTotalTime, bool skippable = true) {
-            int msPause = msTotalTime / TextToWordArray(text).Length;
+            int msPause = msTotalTime / GUI.Position.TextToWordArray(text).Length;
             ByWord(text, msPause, skippable);
-        }
-
-
-
-
-        /// <summary>Helper class to convert a text into an array seperated by symbols and spaces</summary>
-        private static string[] TextToWordArray(string text) {
-            //fancy regex pattern match, thanks google AI. Wish I had proper source to cite
-            string pattern = @"(\w+)|(\W+)";
-            MatchCollection matches = Regex.Matches(text, pattern);
-
-            //cast matches values to a string array
-            return [.. matches.Cast<Match>().Select(match => match.Value)];
         }
     }
 }
