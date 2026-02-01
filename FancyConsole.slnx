@@ -1,3 +1,4 @@
 <Solution>
+  <Project Path="../Testing_FancyConsole/Testing_FancyConsole.csproj" Id="1a8b7ba7-0f2e-426d-82a4-610b92497e06" />
   <Project Path="FancyConsole.csproj" />
 </Solution>
