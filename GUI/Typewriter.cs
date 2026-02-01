@@ -32,7 +32,7 @@ namespace FancyConsole.GUI {
 
         /// <summary>Print out character by character from text, over the span of totalTime in milliseconds</summary>
         public static void ByCharacterOverTime(string text, int msTotalTime, bool skippable = true) {
-            int msPause = msTotalTime / text.Count();
+            int msPause = msTotalTime / text.Length;
             ByCharacter(text, msPause, skippable);
         }
 
@@ -58,7 +58,7 @@ namespace FancyConsole.GUI {
 
         /// <summary>Print out text word/symbol at a time, over span of TotalTime in milliseconds</summary>
         public static void ByWordOverTime(string text, int msTotalTime, bool skippable = true) {
-            int msPause = msTotalTime / TextToWordArray(text).Count();
+            int msPause = msTotalTime / TextToWordArray(text).Length;
             ByWord(text, msPause, skippable);
         }
 
@@ -72,10 +72,7 @@ namespace FancyConsole.GUI {
             MatchCollection matches = Regex.Matches(text, pattern);
 
             //cast matches values to a string array
-            return  matches
-                .Cast<Match>()
-                .Select(match => match.Value)
-                .ToArray();
+            return [.. matches.Cast<Match>().Select(match => match.Value)];
         }
     }
 }
