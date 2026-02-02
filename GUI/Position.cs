@@ -5,6 +5,7 @@ using System.Text.RegularExpressions;
 
 namespace FancyConsole.GUI {
     public static class Position {
+        //TODO(Center/Right):Word wrap is broke AF, cuts off new lines entirely. Low priority.
         /// <summary>Convert a chunk of text to be center alligned by adding spaces</summary>
         public static string Center(string text) {
             string[] lines = text.Split('\n');
