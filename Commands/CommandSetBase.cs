@@ -19,7 +19,9 @@ namespace FancyConsole.Commands {
                     Log.Error($"Could not register <{command.Name}> Command to <{Name}> command set under invoker <{invoker}>, as invoker already exists.");
                 }
 
-                Commands[invoker] = command;
+                //Sanitize and add
+                string sanitizeInvoker = CommandManager.Sanitize(invoker);
+                Commands[sanitizeInvoker] = command;
             }
         }
 

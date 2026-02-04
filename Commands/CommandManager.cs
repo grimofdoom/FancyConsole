@@ -1,5 +1,6 @@
 ﻿using FancyConsole.Text;
 using System.Security.Cryptography;
+using System.Text;
 
 namespace FancyConsole.Commands {
     /// <summary>Used to parse user commands into actions to perform</summary>
@@ -52,6 +53,9 @@ namespace FancyConsole.Commands {
             if (userInput == string.Empty || userInput == "" || userInput == null) {
                 return new CommandResults(CommandStatus.NOINPUT, "No input was provided by user");
             }
+
+            //Sanitize user input to clean it up for any issues to compare to invokers
+            userInput = Sanitize(userInput);
 
 
             //Split up user input into args
@@ -120,6 +124,21 @@ namespace FancyConsole.Commands {
             }
 
             return foundCommands;
+        }
+
+        /// <summary>Sanitize a string tolower, trim, normalize and clear out any newline or control characters</summary>
+        public static string Sanitize(string s) {
+            string normalized = s.Trim().ToLower().Normalize(NormalizationForm.FormC);
+
+            System.Text.StringBuilder results = new(normalized.Length);
+
+            foreach (char c in normalized) {
+                if (!Char.IsControl(c) || c == '\n') {
+                    results.Append(c);
+                }
+            }
+
+            return results.ToString();
         }
     }
 }
