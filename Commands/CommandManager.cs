@@ -64,12 +64,14 @@ namespace FancyConsole.Commands {
             List<ICommand> possibleCommands = FindAllCommands(args[0]);
 
             //Was any command found
-            if (possibleCommands.Count == 0) return new(CommandStatus.NOTFOUND, "No command could be found under <{userInput}>");
+            if (possibleCommands.Count == 0) return new(CommandStatus.NOTFOUND, $"No command could be found under <{args[0]}>");
 
             foreach(ICommand cmd in possibleCommands) {
                 if (cmd == null) continue;
-                //Did we get enough args from user/player to perform command?
-                if (args.Length - 1 < cmd.MinimumParameterCount) continue;
+
+                //Did we get enough args from user/player to perform command, if more than 1 required?
+                if (cmd.MinimumParameterCount != 0)
+                    if (args.Length < cmd.MinimumParameterCount + 1) continue;
 
                 //Command was found and can be performed
                 return cmd.Perform(args,ctx);
@@ -117,7 +119,7 @@ namespace FancyConsole.Commands {
             //Return empty list if no activeLayer exists
             if (activeLayer == null) return foundCommands;
 
-            foreach(CommandSetBase set in Sets.FindAll(x => x.Layers.Contains(activeLayer)) ){
+            foreach(CommandSetBase set in Sets.FindAll(x => x.Layers.Contains(activeLayer) || x.Layers.Contains(CommonLayers.All)) ){
                 if (set.GetCommand(invoker) is ICommand cmd && cmd != null) {
                     foundCommands.Add(cmd);
                 }

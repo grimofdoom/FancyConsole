@@ -14,15 +14,13 @@ namespace FancyConsole.Commands.BaseCommands {
 
 
         public CommandResults? Perform(string[] args, CommandContextBase context) {
-            string infoCommand = args[1];
-
-            Print.Line("Found help!");
+            string infoCommand = CommandManager.Sanitize(args[1]);
 
             //If parameter for command info is empty, then it is going to be ignored
             if (infoCommand == null || infoCommand == "" || infoCommand == string.Empty) return null;
 
             if (CommandManager.FindCommand(infoCommand) is ICommand foundCMD && foundCMD is not null) {
-                Print.Write($"[{foundCMD.Name}] {foundCMD.Description}\n" +
+                Print.Pause($"[{foundCMD.Name}] {foundCMD.Description}\n" +
                     $"        [required info]{ArgsDescription}");
             }
 
