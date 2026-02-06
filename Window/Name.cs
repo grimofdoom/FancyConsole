@@ -16,7 +16,6 @@ namespace FancyConsole.Window {
             Console.WriteLine($"\x1b]0;{windowName}\x07");
 
             //Read and clear out anything extra
-            Console.ReadLine();
             Text.Print.Clear();
         }
     }
